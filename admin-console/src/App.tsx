@@ -373,6 +373,12 @@ function App() {
       <header className="page-header">
         <h1>GuideRx Admin Console</h1>
         <p>Unauthenticated v1 console for DB health and publication ingestion workflows.</p>
+        <p>
+          Clinician app:{" "}
+          <a href="http://localhost:5174" target="_blank" rel="noreferrer">
+            open fake auth screen
+          </a>
+        </p>
       </header>
 
       <section className="panel">

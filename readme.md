@@ -186,6 +186,30 @@ In another terminal run the admin console:
 
 To auto-fill the add-paper form from an uploaded file, ensure the configured LLM provider API key is set in backend `.env` (for example `OPENAI_API_KEY` or `ANTHROPIC_API_KEY` depending on `src/config.ts` route config).
 
+### Clinician console (separate frontend)
+
+A separate React + Vite clinician app scaffold is available in `clinician-console/`.
+
+This app currently includes:
+
+- Demo/fake SSO screen with Google, Apple, and Microsoft buttons (no real auth)
+- Placeholder post-login landing state for adding clinician wireframe screens
+- Same frontend stack/tooling conventions as `admin-console/`
+
+In another terminal run the clinician console:
+
+1. `cd clinician-console`
+2. `npm install`
+3. `npm run dev`
+
+By default this starts on `http://localhost:5174`. The admin console includes a header link to open this clinician app.
+
+If you use the repo service helper, `npm run services:start` now starts:
+
+- backend API
+- admin frontend
+- clinician frontend
+
 ## Validation and tests
 
 Automated tests include:

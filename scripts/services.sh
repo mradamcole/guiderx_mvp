@@ -8,8 +8,10 @@ LOG_DIR="${ROOT_DIR}/.logs"
 
 BACKEND_PID_FILE="${RUN_DIR}/backend.pid"
 FRONTEND_PID_FILE="${RUN_DIR}/frontend.pid"
+CLINICIAN_FRONTEND_PID_FILE="${RUN_DIR}/clinician-frontend.pid"
 BACKEND_LOG_FILE="${LOG_DIR}/backend.log"
 FRONTEND_LOG_FILE="${LOG_DIR}/frontend.log"
+CLINICIAN_FRONTEND_LOG_FILE="${LOG_DIR}/clinician-frontend.log"
 
 usage() {
   echo "Usage: ./scripts/services.sh {start|stop|restart|status}"
@@ -111,8 +113,10 @@ main() {
     start)
       start_service "backend" "${ROOT_DIR}" "npm run dev" "${BACKEND_PID_FILE}" "${BACKEND_LOG_FILE}"
       start_service "frontend" "${ROOT_DIR}/admin-console" "npm run dev" "${FRONTEND_PID_FILE}" "${FRONTEND_LOG_FILE}"
+      start_service "clinician-frontend" "${ROOT_DIR}/clinician-console" "npm run dev" "${CLINICIAN_FRONTEND_PID_FILE}" "${CLINICIAN_FRONTEND_LOG_FILE}"
       ;;
     stop)
+      stop_service "clinician-frontend" "${CLINICIAN_FRONTEND_PID_FILE}"
       stop_service "frontend" "${FRONTEND_PID_FILE}"
       stop_service "backend" "${BACKEND_PID_FILE}"
       ;;
@@ -123,6 +127,7 @@ main() {
     status)
       status_service "backend" "${BACKEND_PID_FILE}"
       status_service "frontend" "${FRONTEND_PID_FILE}"
+      status_service "clinician-frontend" "${CLINICIAN_FRONTEND_PID_FILE}"
       ;;
     *)
       usage
