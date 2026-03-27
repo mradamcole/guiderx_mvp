@@ -379,7 +379,7 @@ COMMENT ON COLUMN PatientContext.diagnoses IS 'Array of Concept IDs representing
 
 CREATE TABLE IF NOT EXISTS RecommendationInstance (
     instance_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    recommendation_id UUID REFERENCES Recommendation(recommendation_id),
+    recommendation_id UUID REFERENCES Recommendation(recommendation_id) ON DELETE CASCADE,
     context_id UUID REFERENCES PatientContext(context_id),
     generated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     evidence_score DECIMAL,
@@ -421,11 +421,24 @@ CREATE TABLE IF NOT EXISTS SafetyAlert (
 
 CREATE TABLE IF NOT EXISTS EvidenceTrace (
     trace_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    recommendation_id UUID REFERENCES Recommendation(recommendation_id),
+    recommendation_id UUID REFERENCES Recommendation(recommendation_id) ON DELETE CASCADE,
     clinical_finding_id UUID REFERENCES ClinicalFinding(clinical_finding_id),
     generated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
 COMMENT ON TABLE EvidenceTrace IS 'Links recommendations back to specific findings, which link to studies, papers, and raw PDFs [cite: 676-681].';
+
+-- Normalize legacy FK policies for already-created databases.
+ALTER TABLE RecommendationInstance
+    DROP CONSTRAINT IF EXISTS recommendationinstance_recommendation_id_fkey;
+ALTER TABLE RecommendationInstance
+    ADD CONSTRAINT recommendationinstance_recommendation_id_fkey
+    FOREIGN KEY (recommendation_id) REFERENCES Recommendation(recommendation_id) ON DELETE CASCADE;
+
+ALTER TABLE EvidenceTrace
+    DROP CONSTRAINT IF EXISTS evidencetrace_recommendation_id_fkey;
+ALTER TABLE EvidenceTrace
+    ADD CONSTRAINT evidencetrace_recommendation_id_fkey
+    FOREIGN KEY (recommendation_id) REFERENCES Recommendation(recommendation_id) ON DELETE CASCADE;
 
 --------------------------------------------------------------------------------
 -- INDEXES FOR PERFORMANCE

@@ -635,7 +635,6 @@ CREATE TABLE clinical_finding (
     weighted_effect         NUMERIC(18,8),
     sum_sample_size         INTEGER,
     consistency_score       NUMERIC(18,8),
-    meta_analysis_id        BIGINT,
     created_at              TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at              TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     CONSTRAINT chk_clinical_finding_effect_direction
@@ -676,10 +675,6 @@ COMMENT ON COLUMN meta_analysis.tau2 IS
 'Between-study variance estimate for random-effects models.';
 COMMENT ON COLUMN meta_analysis.q_statistic IS
 'Cochran Q statistic, where available.';
-
-ALTER TABLE clinical_finding
-    ADD CONSTRAINT fk_clinical_finding_meta_analysis
-    FOREIGN KEY (meta_analysis_id) REFERENCES meta_analysis(meta_analysis_id);
 
 CREATE TABLE meta_analysis_member (
     meta_analysis_member_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
