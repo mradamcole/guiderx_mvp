@@ -1,0 +1,28 @@
+
+> admin-console@0.0.0 dev
+> vite
+
+
+  VITE v8.0.3  ready in 173 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+
+> admin-console@0.0.0 dev
+> vite
+
+
+  VITE v8.0.3  ready in 153 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+
+> admin-console@0.0.0 dev
+> vite
+
+
+  VITE v8.0.3  ready in 145 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+1:52:48 PM [vite] (client) hmr update /src/App.tsx

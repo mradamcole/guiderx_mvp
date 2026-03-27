@@ -41,19 +41,19 @@ export const appConfig = {
       },
       reasoning: {
         provider: "openai",
-        model: "gpt-4.1",
+        model: "gpt-5.4-nano",
         temperature: 0.1,
         maxTokens: 2200
       },
       classification: {
         provider: "openai",
-        model: "gpt-4.1-mini",
+        model: "gpt-5-nano",
         temperature: 0,
         maxTokens: 300
       },
       summarization: {
-        provider: "anthropic",
-        model: "claude-3-5-haiku-latest",
+        provider: "openai",
+        model: "gpt-5.4-mini",
         temperature: 0.2,
         maxTokens: 900
       }

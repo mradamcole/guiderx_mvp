@@ -1,0 +1,18 @@
+
+> guiderx_mvp@1.0.0 dev
+> tsx watch src/server.ts
+
+[dotenv@17.3.1] injecting env (3) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+GuideRx API listening on port 3000
+
+> guiderx_mvp@1.0.0 dev
+> tsx watch src/server.ts
+
+[dotenv@17.3.1] injecting env (3) from .env -- tip: ⚙️  override existing env vars with { override: true }
+GuideRx API listening on port 3000
+
+> guiderx_mvp@1.0.0 dev
+> tsx watch src/server.ts
+
+[dotenv@17.3.1] injecting env (3) from .env -- tip: ⚙️  override existing env vars with { override: true }
+GuideRx API listening on port 3000

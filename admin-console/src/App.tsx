@@ -552,6 +552,7 @@ function App() {
             <input
               value={formState.conceptCode}
               onChange={(event) => updateField("conceptCode", event.target.value)}
+              placeholder="e.g., C0011849 or 5A11"
               required
             />
           </label>
@@ -560,6 +561,7 @@ function App() {
             <input
               value={formState.conceptDisplayText}
               onChange={(event) => updateField("conceptDisplayText", event.target.value)}
+              placeholder="e.g., Chronic pain"
               required
             />
           </label>
@@ -568,6 +570,7 @@ function App() {
             <input
               value={formState.studyName}
               onChange={(event) => updateField("studyName", event.target.value)}
+              placeholder="e.g., Randomized trial of CBD for pain"
               required
             />
           </label>
@@ -576,6 +579,7 @@ function App() {
             <input
               value={formState.studyTypeName}
               onChange={(event) => updateField("studyTypeName", event.target.value)}
+              placeholder="e.g., Randomized controlled trial"
             />
           </label>
           <label>
@@ -585,11 +589,16 @@ function App() {
               min={0}
               value={formState.sampleSize}
               onChange={(event) => updateField("sampleSize", event.target.value)}
+              placeholder="e.g., 120"
             />
           </label>
           <label>
             Sponsor
-            <input value={formState.sponsor} onChange={(event) => updateField("sponsor", event.target.value)} />
+            <input
+              value={formState.sponsor}
+              onChange={(event) => updateField("sponsor", event.target.value)}
+              placeholder="e.g., National Institutes of Health"
+            />
           </label>
           <label>
             Arm Type*
@@ -609,6 +618,7 @@ function App() {
               min={0}
               value={formState.armSize}
               onChange={(event) => updateField("armSize", event.target.value)}
+              placeholder="e.g., 60"
             />
           </label>
           <label>
@@ -616,6 +626,7 @@ function App() {
             <input
               value={formState.productName}
               onChange={(event) => updateField("productName", event.target.value)}
+              placeholder="e.g., Cannabidiol 25mg"
             />
           </label>
           <label>
@@ -625,6 +636,7 @@ function App() {
               step="any"
               value={formState.effectSize}
               onChange={(event) => updateField("effectSize", event.target.value)}
+              placeholder="e.g., 0.42"
             />
           </label>
           <label>
@@ -649,6 +661,7 @@ function App() {
               step="any"
               value={formState.pValue}
               onChange={(event) => updateField("pValue", event.target.value)}
+              placeholder="e.g., 0.03"
             />
           </label>
           <label>
@@ -656,6 +669,7 @@ function App() {
             <input
               value={formState.timepoint}
               onChange={(event) => updateField("timepoint", event.target.value)}
+              placeholder="e.g., Week 12"
             />
           </label>
           <label className="full-width">
@@ -664,6 +678,7 @@ function App() {
               value={formState.summary}
               onChange={(event) => updateField("summary", event.target.value)}
               rows={3}
+              placeholder="e.g., Intervention improved pain score versus placebo with mild adverse events."
             />
           </label>
 

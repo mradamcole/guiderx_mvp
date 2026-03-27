@@ -70,7 +70,8 @@ export async function extractDraftFromUpload(upload: UploadLike): Promise<AdminP
   });
 
   const parsedJson = parseJsonFromModel(llmResult.text);
-  const parsed = adminPaperExtractedDraftSchema.parse(parsedJson);
+  const normalizedJson = normalizeModelOutput(parsedJson);
+  const parsed = adminPaperExtractedDraftSchema.parse(normalizedJson);
 
   // Ensure safe defaults for required create-form fields that may be absent.
   if (!parsed.ingestion.concept.system) {
@@ -130,4 +131,22 @@ function parseJsonFromModel(text: string): unknown {
   }
 
   throw new Error("Could not parse structured JSON from LLM extraction response.");
+}
+
+function normalizeModelOutput(value: unknown): unknown {
+  if (value === null) {
+    return undefined;
+  }
+  if (Array.isArray(value)) {
+    return value
+      .map((item) => normalizeModelOutput(item))
+      .filter((item) => item !== undefined);
+  }
+  if (typeof value === "object" && value !== null) {
+    const normalizedEntries = Object.entries(value)
+      .map(([key, nested]) => [key, normalizeModelOutput(nested)] as const)
+      .filter(([, nested]) => nested !== undefined);
+    return Object.fromEntries(normalizedEntries);
+  }
+  return value;
 }

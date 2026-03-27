@@ -12,6 +12,17 @@ export class OpenAiProvider implements LlmProviderClient {
 
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), config.llm.requestTimeoutMs);
+    const maxTokens = input.maxTokens ?? route.maxTokens;
+    const requestBody: Record<string, unknown> = {
+      model: route.model,
+      messages: input.messages,
+      temperature: input.temperature ?? route.temperature
+    };
+    if (route.model.startsWith("gpt-5")) {
+      requestBody.max_completion_tokens = maxTokens;
+    } else {
+      requestBody.max_tokens = maxTokens;
+    }
 
     try {
       const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -20,12 +31,7 @@ export class OpenAiProvider implements LlmProviderClient {
           "Content-Type": "application/json",
           Authorization: `Bearer ${apiKey}`
         },
-        body: JSON.stringify({
-          model: route.model,
-          messages: input.messages,
-          temperature: input.temperature ?? route.temperature,
-          max_tokens: input.maxTokens ?? route.maxTokens
-        }),
+        body: JSON.stringify(requestBody),
         signal: controller.signal
       });
 
