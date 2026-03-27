@@ -1,0 +1,8 @@
+{
+  "search.useIgnoreFiles": false,
+  "search.useGlobalIgnoreFiles": false,
+  "files.exclude": {
+    "**/.env": false,
+    "**/.env.*": false
+  }
+}

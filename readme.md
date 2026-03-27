@@ -14,6 +14,28 @@ GuideRx MVP is a clinical evidence platform focused on cannabis-related interven
 
 The primary artifact in this repository is a PostgreSQL schema located at `Implementation_instructions/sql_schema.sql`.
 
+## Technology Stack
+
+This project currently uses the following technology stack, and future development should prefer these tools by default unless there is a strong, explicit reason to change:
+
+- **Language/runtime**: TypeScript on Node.js (`src/**/*.ts`, `tsconfig.json`)
+- **API framework**: Express (`express`)
+- **Database**: PostgreSQL (`pg` driver, SQL migrations/seeds)
+- **Validation**: Zod (`zod`)
+- **Configuration**: dotenv (`dotenv`, `.env`)
+- **Dev execution**: tsx (`tsx watch` for local development)
+- **Testing**: Vitest + Supertest (`vitest`, `supertest`)
+- **Build**: TypeScript compiler (`tsc`)
+- **Database workflow**: Make-based commands (`make db-migrate`, `make db-seed`, `make db-init`, `make db-reset-test`)
+
+Stack preference policy for contributors:
+
+- Prefer TypeScript/Node/Express for services and APIs.
+- Prefer PostgreSQL-first schema design with SQL migrations and SQL seed scripts.
+- Prefer Zod for request and payload validation.
+- Prefer Vitest + Supertest for automated testing.
+- Prefer extending existing Make/NPM scripts over introducing parallel tooling.
+
 ## Instantiate the database (local)
 
 ### Quick start (one command)
