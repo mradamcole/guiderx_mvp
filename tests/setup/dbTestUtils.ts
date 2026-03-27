@@ -18,6 +18,24 @@ export async function clearRecommendationGraph() {
   `);
 }
 
+export async function clearAdminPaperGraph() {
+  await pool.query(`
+    TRUNCATE TABLE
+      PaperStudyMap,
+      PaperAuthor,
+      Paper,
+      Author,
+      Journal,
+      Publisher,
+      Outcome,
+      Arm,
+      Study,
+      Product,
+      Concept
+    CASCADE
+  `);
+}
+
 export async function createRecommendationFixture() {
   const conceptResult = await pool.query<{ concept_id: string }>(
     `

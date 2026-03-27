@@ -131,12 +131,15 @@ A minimal TypeScript/Express backend is included under `src/` for:
 - recommendation generation (`POST /api/recommendations/generate`)
 - recommendation retrieval (`GET /api/recommendations/instances/:instanceId`)
 
-### Environment variables
+### Configuration and environment
 
-Copy `.env.example` to `.env` and adjust as needed:
+Application configuration is centralized in `src/config.ts` (ports, CORS origin, LLM routes/models, retry and timeout defaults).
 
-- `PORT` - API port (default `3000`)
-- `DATABASE_URL` - PostgreSQL URL (default local dev DB)
+Copy `.env.example` to `.env` and set only secrets:
+
+- `DATABASE_URL` - PostgreSQL connection URL (include credentials if needed)
+- `OPENAI_API_KEY` - OpenAI API key for configured OpenAI LLM routes
+- `ANTHROPIC_API_KEY` - Anthropic API key for configured Anthropic LLM routes
 
 ### Run locally
 
@@ -147,6 +150,41 @@ Copy `.env.example` to `.env` and adjust as needed:
 Health endpoint:
 
 - `GET /health`
+
+Admin endpoints:
+
+- `GET /api/admin/db-status`
+- `GET /api/admin/papers`
+- `POST /api/admin/papers`
+- `POST /api/admin/papers/extract` (multipart upload, extracts draft fields with LLM)
+
+### Central LLM router
+
+Use `src/llm/index.ts` (`llmRouter`) for all LLM calls. Routing behavior is configured in `src/config.ts` under `appConfig.llm.routes` so model/provider selection stays in one place.
+
+## Admin console (separate frontend)
+
+A separate React + Vite admin app is available in `admin-console/`.
+
+### Environment variables
+
+Copy `admin-console/.env.example` to `admin-console/.env`:
+
+- `VITE_API_BASE_URL` - backend API URL (default `http://localhost:3000`)
+
+### Run locally
+
+From the repo root, in one terminal run the API:
+
+1. `npm run dev`
+
+In another terminal run the admin console:
+
+1. `cd admin-console`
+2. `npm install`
+3. `npm run dev`
+
+To auto-fill the add-paper form from an uploaded file, ensure the configured LLM provider API key is set in backend `.env` (for example `OPENAI_API_KEY` or `ANTHROPIC_API_KEY` depending on `src/config.ts` route config).
 
 ## Validation and tests
 

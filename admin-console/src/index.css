@@ -1,0 +1,174 @@
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  color: #13223a;
+  background-color: #f5f7fb;
+  line-height: 1.4;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  display: grid;
+  gap: 20px;
+}
+
+.page-header h1 {
+  margin: 0 0 8px;
+}
+
+.page-header p {
+  margin: 0;
+  color: #425a7a;
+}
+
+.panel {
+  background: #ffffff;
+  border: 1px solid #d9e2ef;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.panel-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.panel h2 {
+  margin: 0;
+}
+
+.upload-dropzone {
+  border: 2px dashed #8eb2f0;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 14px;
+  background: #f8fbff;
+}
+
+.upload-dropzone.drag-over {
+  border-color: #1f63e2;
+  background: #edf4ff;
+}
+
+.upload-button {
+  display: inline-block;
+  margin-top: 8px;
+  background: #1f63e2;
+  color: #fff;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.upload-button input[type="file"] {
+  display: none;
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(160px, 1fr));
+  gap: 8px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  border-bottom: 1px solid #edf2f8;
+  padding: 8px;
+  vertical-align: top;
+}
+
+th {
+  background: #f8fbff;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.form-grid label {
+  display: grid;
+  gap: 4px;
+  font-size: 14px;
+  color: #314968;
+}
+
+.form-grid h3 {
+  margin: 12px 0 0;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.checkbox {
+  align-content: end;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+input,
+select,
+textarea {
+  border: 1px solid #c7d5e7;
+  border-radius: 6px;
+  padding: 8px 10px;
+  width: 100%;
+}
+
+button {
+  background: #1f63e2;
+  border: 1px solid #1f63e2;
+  color: #fff;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #b91c1c;
+}
+
+.success {
+  color: #157347;
+}
